@@ -30,17 +30,21 @@ router.get('/candies/:id', (req, res) => {
 // CREATE
 router.post('/candies', (req, res) => {
     console.log(req.body);
-    res.status(201).json({message: 'candy created',
-    id: req.body.id,
-    name: req.body.name,
-    color: req.body.color
-    });
+    if (req.body.color === "hahah") {
+        res.status(422).json({message: 'candy could not be created'})
+    } else {
+        res.status(201).json({message: 'candy created',
+        id: req.body.id,
+        name: req.body.name,
+        color: req.body.color
+        })
+    }
     
     var candy = {
     id: parseInt(req.body.id),
     name: req.body.name,
     color: req.body.color
-  }
+    }
 
   candies.push(candy);
 })
@@ -54,4 +58,5 @@ router.put('/candies/:id', (req, res) => {
 router.delete('/candies/:id', (req, res) => {
     res.status(200).json({ message: `candies${req.params.id} deleted` })
 })
+
 module.exports = router;
