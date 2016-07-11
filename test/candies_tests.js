@@ -1,7 +1,7 @@
 // Global describe it
 const expect = require('chai').expect
 const supertest = require('supertest')
-const api = supertest('https://node-flight846.c9users.io')
+const api = supertest('http://localhost:3000')
 
 describe('GET /candies', () => {
     it('should return a 200 response', (done) => {
@@ -41,8 +41,8 @@ describe('POST /candies', () => {
             "color": "red"
         }).end(done)
     })
-    
-    it('it should add a candy object to the collection and return it'), (done) => {
+   
+    it('it should add a candy object to the collection and return it', (done) => {
         api.get('/candies')
         .set('Accept', 'application/json')
         .end((error, response) => {
@@ -51,5 +51,5 @@ describe('POST /candies', () => {
             expect(response.body[response.body.length-1].name).to.equal('lollipop')
             done()
         })
-    }
+    }) 
 })
